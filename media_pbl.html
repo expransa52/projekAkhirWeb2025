@@ -129,5 +129,208 @@
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="media_pbl.js"></script>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-analytics.js";
+        import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-database.js";
+
+        const subjudulGambarMapping = [
+            { "judul_sub": "Hewan Bersel Satu (Uniseluler)", "gambar_sub": "sel1.jpeg" },
+            { "judul_sub": "Cacing Tanah (Annelida)", "gambar_sub": "Cacing.jpg" },
+            { "judul_sub": "Serangga (Insekta)", "gambar_sub": "seranggaa.jpg" },
+            { "judul_sub": "Ikan (Pisces)", "gambar_sub": "Ikan.jpg" },
+            { "judul_sub": "Katak dan Amfibi", "gambar_sub": "katak.jpg" },
+            { "judul_sub": "Reptil", "gambar_sub": "Reptil.jpg" },
+            { "judul_sub": "Burung (Aves)", "gambar_sub": "aves.jpg" },
+            { "judul_sub": "Mamalia", "gambar_sub": "mamaliaaa.jpg" },
+            { "judul_sub": "Struktur Organ Pernapasan", "gambar_sub": "strukturorganpernapasan.jpg" },
+            { "judul_sub": "Mekanisme Pernapasan", "gambar_sub": "Mekanisme pernapasan.jpg" },
+            { "judul_sub": "Pertukaran Gas di Paru-paru dan Jaringan", "gambar_sub": "Pertukaran gas.jpg" },
+            { "judul_sub": "Fungsi Tambahan Sistem Pernapasan", "gambar_sub": "Bersin.jpg" },
+            { "judul_sub": "Jenis Pernapasan pada Manusia", "gambar_sub": "Macammacampernapasan.jpg" },
+            { "judul_sub": "Faktor yang Mempengaruhi Fungsi Pernapasan", "gambar_sub": "Rokok.jpg" },
+            { "judul_sub": "Asma", "gambar_sub": "Asma d.jpg" },
+            { "judul_sub": "Bronkitis", "gambar_sub": "Bronkitis.jpg" },
+            { "judul_sub": "Pneumonia", "gambar_sub": "Pneumonia.jpg" },
+            { "judul_sub": "Tuberkulosis (TBC)", "gambar_sub": "tuberkolosis.jfif.jpg" },
+            { "judul_sub": "Emfisema", "gambar_sub": "gambar-emfisema.webp" },
+            { "judul_sub": "ISPA (Infeksi Saluran Pernapasan Akut)", "gambar_sub": "Ispa.jpg" },
+            { "judul_sub": "Kanker Paru-paru", "gambar_sub": "Kanker-Paru-paru.webp" }
+        ];
+
+        const gambarMap = {};
+        subjudulGambarMapping.forEach(item => {
+            gambarMap[item.judul_sub] = item.gambar_sub;
+        });
+
+        const firebaseConfigMateri = {
+            apiKey: "AIzaSyDWS-yRGyvLClGWiBeq_Z_BcZ-kBgHll8M",
+            authDomain: "materiprojek-70911.firebaseapp.com",
+            databaseURL: "https://materiprojek-70911-default-rtdb.firebaseio.com",
+            projectId: "materiprojek-70911",
+            storageBucket: "materiprojek-70911.firebasestorage.app",
+            messagingSenderId: "755242949891",
+            appId: "1:755242949891:web:2bbde5a922b54cfa0f9d36",
+            measurementId: "G-137P86T9LE"
+        };
+const appMateri = initializeApp(firebaseConfigMateri, "materiApp");
+        const analytics = getAnalytics(appMateri);
+        const databaseMateri = getDatabase(appMateri);
+
+        const appTentang = initializeApp(firebaseConfigTentang, "tentangApp");
+        const databaseTentang = getDatabase(appTentang);
+
+        const materiRef = ref(databaseMateri, 'materi_sistem_pernapasan');
+        const materiContentDiv = document.getElementById('materi-content-from-firebase');
+
+        let materiDetailDiv = document.getElementById('materi-detail-page');
+        if (!materiDetailDiv) {
+            materiDetailDiv = document.createElement('div');
+            materiDetailDiv.id = 'materi-detail-page';
+            materiDetailDiv.className = 'materi-detail-page d-none';
+            materiContentDiv.parentNode.appendChild(materiDetailDiv);
+        }
+
+        const materiDetailListDiv = document.getElementById('materi-detail-list');
+        const materiSidebarDetail = document.getElementById('materi-sidebar-detail');
+
+        onValue(materiRef, (snapshot) => {
+            const materiData = snapshot.val();
+
+            if (materiData && materiData.subbab && Array.isArray(materiData.subbab)) {
+                let materiHtml = '';
+                if (materiData.judul) {
+                    materiHtml += `<h2 class="materi-main-title text-center mb-4">${materiData.judul}</h2>`;
+                }
+                materiHtml += `<div class="materi-cards-container">`;
+
+                const gambarStatis = [
+                    "domba-dimateri.jpg",
+                    "Manusia-dimateri.jpg",
+                    "Gangguan.jpg"
+                ];
+
+                materiData.subbab.forEach((subbab, idx) => {
+                    let gambar = gambarStatis[idx] || "https://via.placeholder.com/150";
+
+                    materiHtml += `
+                    <div class="materi-wrapper">
+                        <div class="materi-image">
+                            <img src="${gambar}" alt="Gambar ${subbab.judul}" style="width: 80%; height: 200px;">
+                        </div>
+                        <div class="materi-content">
+                            <h3 class="materi-title">${subbab.judul}</h3>
+                            <button class="btn-detail" data-idx="${idx}">Lihat Detail</button>
+                        </div>
+                    </div>
+                    `;
+                });
+
+                materiHtml += `</div>`;
+                materiContentDiv.innerHTML = materiHtml;
+                materiContentDiv.classList.remove('d-none');
+                materiDetailDiv.classList.add('d-none');
+
+                materiSidebarDetail.classList.add('d-none');
+
+                document.querySelectorAll('.btn-detail').forEach(btn => {
+                    btn.onclick = () => {
+                        const idx = btn.getAttribute('data-idx');
+                        showMateriDetail(parseInt(idx), materiData);
+                        document.querySelectorAll('#sidebar .nav-link').forEach(l => l.classList.remove('active'));
+                        document.querySelector('#sidebar .nav-link[data-page="materi"]').classList.add('active');
+                    };
+                });
+
+                const mainMaterialCategories = [
+                    { title: "Sistem Pernapasan pada Hewan", idx: 0 },
+                    { title: "Sistem Pernapasan pada Manusia", idx: 1 },
+                    { title: "Gangguan pada Sistem Pernapasan", idx: 2 }
+                ];
+
+                function showMateriDetail(selectedIdx, materiData) {
+                    const subbab = materiData.subbab[selectedIdx];
+                    if (!subbab) {
+                        console.error("Materi dengan indeks ini tidak ditemukan:", selectedIdx);
+                        return;
+                    }
+
+                    let detailHtml = `<button class="btn-back-materi pixel-btn" style="margin-bottom: 20px;">← Kembali</button>`;
+                    detailHtml += `<h2 id="materi-top">${subbab.judul}</h2>`;
+
+                    if (subbab.isi && Array.isArray(subbab.isi)) {
+                        subbab.isi.forEach((item, subIdx) => {
+                            const gambarDetail = gambarMap[item.judul_sub] || 'https://via.placeholder.com/50x50?text=No+Image';
+                            const elementId = `subbab-item-${selectedIdx}-${subIdx}`;
+
+                            if (item.judul_sub) {
+                                detailHtml += `
+                                <h4 class="teks" id="${elementId}">${item.judul_sub}</h4>
+                                    <div class="subjudul-dengan-gambar">
+                                        <img src="${gambarDetail}" alt="${item.judul_sub}" class="gambar-subjudul">
+                                    </div>
+                                `;
+                            }
+                            if (item.isi_sub) detailHtml += `<p class="teks-sub" style="font-size: 20px";>${item.isi_sub}</p>`;
+                        });
+                    }
+
+                    let sidebarDetailHtml = `<ul>`;
+                    mainMaterialCategories.forEach(category => {
+                        const actualSubbabTitle = materiData.subbab[category.idx] ? materiData.subbab[category.idx].judul : category.title;
+                        const isActive = (category.idx === selectedIdx) ? 'active-sub' : '';
+                        sidebarDetailHtml += `
+                            <li class="sub-materi-item ${isActive}" data-main-idx="${category.idx}" data-scroll-to-id="materi-top">
+                                ${actualSubbabTitle}
+                            </li>`;
+                    });
+                    sidebarDetailHtml += `</ul>`;
+
+                    materiDetailDiv.innerHTML = detailHtml;
+                    materiContentDiv.classList.add('d-none');
+                    materiDetailDiv.classList.remove('d-none');
+
+                    materiDetailListDiv.innerHTML = sidebarDetailHtml;
+                    materiSidebarDetail.classList.remove('d-none');
+
+                    document.querySelectorAll('.sub-materi-item').forEach(item => {
+                        item.addEventListener('click', function () {
+                            const newIdx = parseInt(this.getAttribute('data-main-idx'));
+
+                            document.querySelectorAll('.sub-materi-item').forEach(subItem => subItem.classList.remove('active-sub'));
+                            this.classList.add('active-sub');
+
+                            showMateriDetail(newIdx, materiData);
+
+                            const mainContentElement = document.getElementById('main-content');
+                            if (mainContentElement) {
+                                mainContentElement.scrollTo({ top: materiDetailDiv.offsetTop - 100, behavior: 'smooth' });
+                            } else {
+                                window.scrollTo({ top: materiDetailDiv.offsetTop - 100, behavior: 'smooth' });
+                            }
+                        });
+                    });
+
+                    materiDetailDiv.querySelector('.btn-back-materi').onclick = () => {
+                        materiDetailDiv.classList.add('d-none');
+                        materiContentDiv.classList.remove('d-none');
+                        materiSidebarDetail.classList.add('d-none');
+                        const mainContentElement = document.getElementById('main-content');
+                        if (mainContentElement) {
+                            mainContentElement.scrollTo({ top: materiContentDiv.offsetTop - 30, behavior: 'smooth' });
+                        } else {
+                            window.scrollTo({ top: materiContentDiv.offsetTop - 30, behavior: 'smooth' });
+                        }
+                    };
+                }
+
+            } else {
+                materiContentDiv.innerHTML = "<p>Konten materi tidak ditemukan di database atau kosong.</p>";
+            }
+        }, (error) => {
+            console.error("Error membaca data 'materi':", error);
+            materiContentDiv.innerHTML = "<p>Terjadi kesalahan saat memuat materi. Periksa konsol browser untuk detail.</p>";
+        });
+     </script>
 </body>
 </html>
