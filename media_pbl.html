@@ -1,17 +1,20 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <title>Media Interaktif Sistem Pernapasan pada Manusia - Beranda</title>
     <link rel="icon" href="Logo.png">
-    <link rel="stylesheet" href="media_pbl.css">
+    <link rel="stylesheet" href="style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </head>
+
 <body>
     <div id="sidebar" class="sidebar">
         <div class="sidebar-header text-uppercase">menu</div>
@@ -30,6 +33,7 @@
 
         <button class="logout-link" onclick="logout()"><i class="bi bi-box-arrow-right"></i>KELUAR</button>
     </div>
+
     <div id="main-content">
         <div class="topbar">
             <button class="sidebar-toggle" id="sidebarToggle"><i class="bi bi-list"></i></button>
@@ -37,89 +41,106 @@
                 apakah kamu siap belajar hari ini!
             </marquee>
         </div>
-        
-    <div id="beranda-page" class="beranda-bg page-section">
-        <div class="pixel-title">ARE YOU READY?<br>MEDIA INTERAKTIF SISTEM PERNAPASAN</div>
-        <div class="pixel-subtitle">Belajar Sistem Pernapasan dengan Cara Menyenangkan!</div>
-        <div class="pixel-character">
-            <img src="paru.png" alt="Paru-paru Lucu" />
-        </div>
-        <div class="container">
-            <div class="music-controls" style="position: absolute; top: 20px; right: 30px; z-index: 10;">
-                <audio id="audioPlayer">
-                    <source src="Musik untuk projek akhir.mp3" type="audio/mpeg">
-                    Browser tidak mendukung audio.
-                </audio>
-                <button class="btn-circle" id="volumeBtn" title="Mute/Unmute">
-                    <i id="volume-icon" class="fas fa-volume-up"></i>
-                </button>
-                <button class="btn-circle" id="musicBtn" title="Play/Pause">
-                    <i id="music-icon" class="fas fa-music"></i>
-                </button>
+
+        <div id="beranda-page" class="beranda-bg page-section">
+            <div class="pixel-bg-clouds">
+                <svg width="100%" height="100%">
+                    <rect x="30" y="30" width="80" height="20" fill="#fff" />
+                    <rect x="200" y="50" width="100" height="25" fill="#fff" />
+                    <rect x="450" y="20" width="90" height="18" fill="#fff" />
+                    <rect x="700" y="60" width="70" height="15" fill="#fff" />
+                </svg>
             </div>
-
-            <div class="row justify-content-center">
-                <div class="col-12 pixel-menu-row">
-                    <button class="pixel-btn" onclick="showPage('materi')"><i
-                        class="bi bi-journal-bookmark"></i>MATERI</button>
-                    <button class="pixel-btn" onclick="showPage('kuis')"><i class="bi bi-patch-question"></i>KUIS</button>
+            <div class="pixel-title">ARE YOU READY?<br>MEDIA INTERAKTIF SISTEM PERNAPASAN</div>
+            <div class="pixel-subtitle">Belajar Sistem Pernapasan dengan Cara Menyenangkan!</div>
+            <div class="pixel-character">
+                <img src="paru.png" alt="Paru-paru Lucu" />
+            </div>
+            <div class="container">
+                <div class="music-controls" style="position: absolute; top: 20px; right: 30px; z-index: 10;">
+                    <audio id="audioPlayer">
+                        <source src="Musik untuk projek akhir.mp3" type="audio/mpeg">
+                        Browser tidak mendukung audio.
+                    </audio>
+                    <button class="btn-circle" id="volumeBtn" title="Mute/Unmute">
+                        <i id="volume-icon" class="fas fa-volume-up"></i>
+                    </button>
+                    <button class="btn-circle" id="musicBtn" title="Play/Pause">
+                        <i id="music-icon" class="fas fa-music"></i>
+                    </button>
                 </div>
-                <div class="col-12 pixel-menu-row">
-                    <button class="pixel-btn" onclick="showPage('video')"><i class="bi bi-play-circle"></i>VIDEO</button>
-                    <button class="pixel-btn" onclick="showPage('tentang')"><i
-                        class="bi bi-info-circle"></i>TENTANG</button>
-                    <button class="pixel-btn" onclick="logout()"><i class="bi bi-box-arrow-right"></i>KELUAR</button>
+
+                <div class="row justify-content-center">
+                    <div class="col-12 pixel-menu-row">
+                        <button class="pixel-btn" onclick="showPage('materi')"><i
+                                class="bi bi-journal-bookmark"></i>MATERI</button>
+                        <button class="pixel-btn" onclick="showPage('kuis')"><i
+                                class="bi bi-patch-question"></i>KUIS</button>
+                    </div>
+                    <div class="col-12 pixel-menu-row">
+                        <button class="pixel-btn" onclick="showPage('video')"><i
+                                class="bi bi-play-circle"></i>VIDEO</button>
+                        <button class="pixel-btn" onclick="showPage('tentang')"><i
+                                class="bi bi-info-circle"></i>TENTANG</button>
+                        <button class="pixel-btn" onclick="logout()"><i
+                                class="bi bi-box-arrow-right"></i>KELUAR</button>
+                    </div>
                 </div>
             </div>
         </div>
-    <div id="materi-page" class="fitur-page-materi page-section d-none">
-        <div class="fitur-title">Materi Sistem Pernapasan</div>
-        <div class="fitur-content" id="materi-content-from-firebase">
-            <p>Memuat materi...</p>
+
+        <div id="materi-page" class="fitur-page-materi page-section d-none">
+            <div class="fitur-title">Materi Sistem Pernapasan</div>
+            <div class="fitur-content" id="materi-content-from-firebase">
+                <p>Memuat materi...</p>
+            </div>
         </div>
-    </div>
-    <div id="kuis-page" class="fitur-page page-section d-none">
-        <div class="fitur-title">Kuis</div>
-        <div class="fitur-content">
-            <p>Konten Kuis akan ada di sini atau dimuat dari Kuis.html.</p>
+
+        <div id="kuis-page" class="fitur-page page-section d-none">
+            <div class="fitur-title">Kuis</div>
+            <div class="fitur-content">
+                <p>Konten Kuis akan ada di sini atau dimuat dari Kuis.html.</p>
+            </div>
         </div>
-    </div>
-      <div id="video-page" class="fitur-page page-section d-none">
-        <div class="fitur-title">Video Pembelajaran</div>
-        <div class="fitur-content video-grid-container">
-            <h4 class="video-section-heading text-capitalize">ada berbagai video pembelajaran untuk di tonton:</h4>
 
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/AKW3Zen8DD4?si=LwwDSztZlHughRO9"
-                title="Sistem Pernapasan Manusia" frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        <div id="video-page" class="fitur-page page-section d-none">
+            <div class="fitur-title">Video Pembelajaran</div>
+            <div class="fitur-content video-grid-container">
+                <h4 class="video-section-heading text-capitalize">ada berbagai video pembelajaran untuk di tonton:</h4>
 
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/BN_kF5BYrT4?si=pGTywFVR-sOUzu7p"
-                title="Sistem Pernapasan pada Manusia" frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/AKW3Zen8DD4?si=LwwDSztZlHughRO9"
+                    title="Sistem Pernapasan Manusia" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/s48V8Edn328?si=GXzGGUxQ14Gdz7CQ"
-                title="Video Materi Pernapasan Manusia" frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-in; gyroscope; picture-in-picture; web-share"
-                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/oQPfpHYmkew?si=LPl3VhdaapK3hphC"
-                title="Organ Pernapasan Manusia" frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/BN_kF5BYrT4?si=pGTywFVR-sOUzu7p"
+                    title="Sistem Pernapasan pada Manusia" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/U31-lddMz9M?si=yDG2wCQDY8yEgU3f"
-                title="Proses Pernapasan Manusia" frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/s48V8Edn328?si=GXzGGUxQ14Gdz7CQ"
+                    title="Video Materi Pernapasan Manusia" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-in; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/Y3DuNMBZTAA?si=Snnqos9JmrXrX038"
-                title="Gangguan Sistem Pernapasan" frameborder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/oQPfpHYmkew?si=LPl3VhdaapK3hphC"
+                    title="Organ Pernapasan Manusia" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/U31-lddMz9M?si=yDG2wCQDY8yEgU3f"
+                    title="Proses Pernapasan Manusia" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/Y3DuNMBZTAA?si=Snnqos9JmrXrX038"
+                    title="Gangguan Sistem Pernapasan" frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+            </div>
         </div>
-    </div>
     </div>
 
     <div id="tentang-page" class="fitur-page page-section d-none">
@@ -128,10 +149,10 @@
             <p>Memuat konten...</p>
         </div>
     </div>
-    
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="media_pbl.js"></script>
-    
+    <script src="script.js"></script>
+
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-app.js";
         import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-analytics.js";
@@ -176,7 +197,18 @@
             appId: "1:755242949891:web:2bbde5a922b54cfa0f9d36",
             measurementId: "G-137P86T9LE"
         };
-const appMateri = initializeApp(firebaseConfigMateri, "materiApp");
+
+        const firebaseConfigTentang = {
+            apiKey: "AIzaSyAVDh4dG81_JlmkMmIztd4m9gRaO-msMYc",
+            authDomain: "tentang-web.firebaseapp.com",
+            databaseURL: "https://tentang-web-default-rtdb.firebaseio.com",
+            projectId: "tentang-web",
+            storageBucket: "tentang-web.firebasestorage.app",
+            messagingSenderId: "262389729779",
+            appId: "1:262389729779:web:3e1ea6a3d725d764ea6a86"
+        };
+
+        const appMateri = initializeApp(firebaseConfigMateri, "materiApp");
         const analytics = getAnalytics(appMateri);
         const databaseMateri = getDatabase(appMateri);
 
@@ -334,7 +366,98 @@ const appMateri = initializeApp(firebaseConfigMateri, "materiApp");
             console.error("Error membaca data 'materi':", error);
             materiContentDiv.innerHTML = "<p>Terjadi kesalahan saat memuat materi. Periksa konsol browser untuk detail.</p>";
         });
-     </script>
-    
+
+        const tentangRef = ref(databaseTentang, 'tentang');
+        const tentangContentDiv = document.getElementById('tentang-content-from-firebase');
+
+        onValue(tentangRef, (snapshot) => {
+            const tentangTextFromFirebase = snapshot.val();
+
+            const profileHtmlContent = `
+            <section id="profile" class="container mt-5 text-center">
+                <div class="d-flex justify-content-center flex-wrap mb-4" style="gap: 10px;">
+                <img src="Profil Singkat 1.png" class="img-fluid" style="width: 550px; height: 300px" alt="Profil singkat">
+                </div>
+
+                <h2 class="mb-4 giant-text">Profil Singkat</h2>
+
+                <div class="row row-cols-1 g-4">
+                </div>
+            </section>
+
+            <div class="container">
+                <div class="profile-row">
+                <img src="Aisyah 1.png" class="profile-img" alt="Aisyah">
+                <div class="profile-text">
+                    <p>Nama: Aisyah Azimah</p>
+                    <p>NIM: 2410131220005</p>
+                    <p>Tanggal Lahir: 26 Juni 2006</p>
+                    <p>E-Mail: <a href="mailto:aisyahazimah7@gmail.com">aisyahazimah7@gmail.com</a></p>
+                    <p>Tugas:<br>
+                        1. Membuat logo di bagian tab browser<br>
+                        2. Membuat gambar profil singkat dan isi profil singkatnya<br>
+                        3. Menambahkan music di bagian beranda yaitu putar/pouse dan membisukan music.<br>
+                        4. Menambah css eksternal untuk setiap halaman website.<br>
+                        5. Menambahkan JS musik<br>
+                        6. Mencari video pembelajaran.<br>
+                        7. Menambah JS Beranda, Sidebar, dan Toogle</p>
+                </div>
+                </div>
+
+                <div class="profile-row">
+                <img src="Ekspransa 2.png" class="profile-img" alt="Ekspransa">
+                <div class="profile-text">
+                    <p>Nama: Expransa Saputra</p>
+                    <p>NIM: 2410131210003</p>
+                    <p>Tanggal Lahir: 7 Desember 2005</p>
+                    <p>E-Mail: <a href="mailto:expransasaputra@gmail.com">expransasaputra@gmail.com</a></p>
+                    <p>Tugas:<br>
+                        1. Membuat halaman Beranda, Sidebar, Fitur,
+                        dan gambar di bagian beranda sama teks berjalan<br>
+                        2. Membuat halaman materi dari firebase dan gambar judul materinya<br>
+                        3. Membuat halaman kuis dan kuisnya dari firebase, hasil akhir skor kuis nya dan
+                        menambahkan timer pengerjaan kuis.<br>
+                        4. Membuat JS bagian Kuis, Waktu kuis, materi, dan Mengarahkan fitur setiap di klik ke halaman tertentu.<br>
+                        5. Menambahkan font pixel (Press Start 2P) dari Google Fonts untuk teks menjadi pixel.<br>
+                        6. Menambahkan CSS Font Awesome untuk ikon-ikon di dalam sidebar, termasuk ikon rumah (Beranda), buku (Materi), tanda tanya (Kuis), play (Video), informasi (Tentang), dan pintu keluar (Keluar).<br>
+                        7. Menambahkan Bootstrap CSS dan JS.
+                    </p>
+                </div>
+                </div>
+
+                <div class="profile-row">
+                <img src="Bakeri 1.png" class="profile-img" alt="Bakeri">
+                <div class="profile-text">
+                    <p>Nama: Muhammad Bakeri</p>
+                    <p>NIM: 2410131310009</p>
+                    <p>Tanggal Lahir: 06 Desember 2005</p>
+                    <p>E-Mail: <a href="mailto:mbakeri0612@gmail.com">mbakeri0612@gmail.com</a></p>
+                    <p>Tugas:<br>
+                        1. Membuat Halaman Login<br>
+                        2. Membuat Pop Up JS costum<br>
+                        3. Membuat Firebase bagian tentang<br>
+                        4. Membuat JS untuk login interaktif, Pop Up JS costum,
+                        dan tombol interaktif ke halaman lain<br>
+                        5. Membuat JS nama tab browser setiap halaman berbeda-beda.<br>
+                        6. Menambahkan Liblary JS dari Sweetalert2<br>
+                        7. Menambahkan Bootstrap CSS dan JS.
+                    </p>
+                </div>
+                </div>
+            </div>
+            `;
+            if (tentangTextFromFirebase) {
+                tentangContentDiv.innerHTML = tentangTextFromFirebase + profileHtmlContent;
+            } else {
+                tentangContentDiv.innerHTML = profileHtmlContent;
+            }
+        }, (error) => {
+            console.error("Error membaca data 'tentang':", error);
+            tentangContentDiv.innerHTML = "<p>Terjadi kesalahan saat memuat konten. Periksa konsol browser.</p>";
+        });
+
+    </script>
+
 </body>
+
 </html>
