@@ -5,14 +5,297 @@
     <meta charset="UTF-8">
     <title>Media Interaktif Sistem Pernapasan pada Manusia - Kuis</title>
     <link rel="icon" href="Logo.png">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="media_pbl.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">  
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
+    <style>
+        .main-kuis {
+            background: #b6d3f7;
+            min-height: calc(100vh - 60px);
+            padding: 40px 0;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .kategori-wrap {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .kategori-box {
+            background: #fff;
+            border-radius: 10px;
+            padding: 30px 36px 36px 36px;
+            box-shadow: 0 2px 12px #0002;
+            margin-bottom: 38px;
+            width: 100%;
+        }
+
+        .kategori-box h2 {
+            margin-top: 0;
+            margin-bottom: 18px;
+            color: #222;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 1rem;
+        }
+
+        .btn-kerjakan {
+            background: #b6aeea;
+            border: none;
+            color: #222;
+            font-weight: bold;
+            padding: 10px 28px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 24px;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 0.8rem;
+            border: 3px solid #222831;
+            box-shadow: 0 4px 0 #222831;
+        }
+
+        .btn-kerjakan:active {
+            transform: translateY(2px);
+            box-shadow: 0 2px 0 #222831;
+        }
+
+        .kuis-area {
+            margin-top: 10px;
+            display: none;
+        }
+
+        .kuis-area.active {
+            display: block;
+        }
+
+        .row-kuis {
+            display: flex;
+            flex-direction: row;
+            align-items: stretch;
+            justify-content: space-between;
+            margin-bottom: 34px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .kuis-timer {
+            position: absolute;
+            top: 15px;
+            right: 40px;
+            background: #ffe066;
+            color: #222831;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 1rem;
+            border-radius: 6px;
+            padding: 8px 18px;
+            font-weight: bold;
+            border: 3px solid #222831;
+            box-shadow: 0 2px 0 #222831;
+            z-index: 2;
+        }
+
+        .kategori-box {
+            position: relative;
+        }
+
+
+        .soal-box {
+            background: #5c5c7a;
+            color: #fff;
+            border-radius: 6px;
+            padding: 38px 28px;
+            font-size: 1rem;
+            font-family: 'Press Start 2P', cursive;
+            min-height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            flex: 1;
+            min-width: 300px;
+            border: 3px solid #222831;
+            box-shadow: 0 4px 0 #222831;
+        }
+
+
+
+        .pilihan-list {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+            justify-content: center;
+            flex: 1;
+            min-width: 220px;
+        }
+
+        .pilihan-btn {
+            background: #3db6b3;
+            color: black;
+            border: none;
+            border-radius: 4px;
+            padding: 18px 0;
+            font-size: 0.8rem;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.2s;
+            width: 100%;
+            font-family: 'Press Start 2P', cursive;
+            border: 3px solid #222831;
+            box-shadow: 0 4px 0 #222831;
+        }
+
+        .pilihan-btn:active {
+            transform: translateY(2px);
+            box-shadow: 0 2px 0 #222831;
+        }
+
+        .pilihan-btn.selected {
+            background: #b6aeea;
+            color: #222;
+        }
+
+        .pilihan-btn.correct {
+            background: #27ae60;
+            color: #fff;
+        }
+
+        .pilihan-btn.wrong {
+            background: #e74c3c;
+            color: #fff;
+        }
+
+        .nav-btns {
+            display: flex;
+            gap: 18px;
+            justify-content: center;
+            margin-top: 10px;
+            flex-wrap: wrap;
+        }
+
+        .nav-btns button {
+            background: #b6aeea;
+            color: #222;
+            border: none;
+            border-radius: 4px;
+            padding: 10px 34px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            font-weight: bold;
+            margin-bottom: 0;
+            transition: background 0.2s;
+            font-family: 'Press Start 2P', cursive;
+            border: 3px solid #222831;
+            box-shadow: 0 4px 0 #222831;
+        }
+
+        .nav-btns button:active {
+            transform: translateY(2px);
+            box-shadow: 0 2px 0 #222831;
+        }
+
+        .nav-btns button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .score-final {
+            background: #5c5c7a;
+            color: #fff;
+            padding: 32px 12px;
+            border-radius: 8px;
+            text-align: center;
+            margin: 30px auto 16px auto;
+            max-width: 600px;
+            font-family: 'Press Start 2P', cursive;
+            border: 3px solid #222831;
+            box-shadow: 0 4px 0 #222831;
+        }
+
+        .score-final .score {
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #ffe066;
+            text-shadow: 2px 2px #222831;
+        }
+
+        .score-final .motivasi {
+            margin-bottom: 20px;
+        }
+
+        .score-final .btn-beranda {
+            background: #b6aeea;
+            color: #222;
+            font-size: 0.8rem;
+            border: none;
+            padding: 12px 32px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 20px;
+            font-family: 'Press Start 2P', cursive;
+            border: 3px solid #222831;
+            box-shadow: 0 4px 0 #222831;
+        }
+
+        .score-final .btn-beranda:active {
+            transform: translateY(2px);
+            box-shadow: 0 2px 0 #222831;
+        }
+
+        .btn-keluar {
+            display: block;
+            margin: 0 auto;
+            width: 20%;
+            height: 50px;
+            border-radius: 10px;
+            background: #ff5252;
+            color: #fff;
+            font-size: 18px;
+            font-family: 'Press Start 2P', cursive;
+            font-weight: bold;
+            border: 3px solid #222831;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 0 #222831;
+            transition: transform 0.1s, box-shadow 0.1s;
+            cursor: pointer;
+        }
+
+        .btn-keluar:hover {
+            background: #ff3232;
+        }
+
+        .btn-keluar:active {
+            transform: translateY(2px);
+            box-shadow: 0 2px 0 #222831;
+        }
+
+        @media (max-width: 768px) {
+            .row-kuis {
+                flex-direction: column;
+            }
+
+            .soal-box,
+            .pilihan-list {
+                min-width: 100%;
+                max-width: 100%;
+            }
+
+            .kategori-box {
+                padding: 20px;
+            }
+        }
+    </style>
 </head>
+
 <body>
     <div id="sidebar" class="">
         <div class="sidebar-header text-uppercase">menu</div>
@@ -42,5 +325,179 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <script src="media_pbl.js"></script>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-app.js";
+        import { getDatabase, ref, get } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-database.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyDl4ifn7_d2NZDoTiXnM1NGkZ5Hc8yhrzc",
+            authDomain: "materiprojek-e00c6.firebaseapp.com",
+            databaseURL: "https://materiprojek-e00c6-default-rtdb.firebaseio.com",
+            projectId: "materiprojek-e00c6",
+            storageBucket: "materiprojek-e00c6.appspot.com",
+            messagingSenderId: "67405972878",
+            appId: "1:67405972878:web:9dbc3c85c4ab18727010df",
+            measurementId: "G-4Y24MG3B9N"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
+
+        const urutanKategori = [
+            "Pernapasan pada hewan",
+            "Pernapasan pada manusia",
+            "Ganguan pada sistem pernapasan"
+        ];
+
+        const kategoriWrap = document.getElementById('kategori-wrap');
+
+        async function loadData() {
+            kategoriWrap.innerHTML = "Memuat soal...";
+            try {
+                const snapshot = await get(ref(db, '/'));
+                if (!snapshot.exists()) {
+                    kategoriWrap.textContent = "Tidak ada data soal di database.";
+                    return;
+                }
+                const soalData = snapshot.val();
+                kategoriWrap.innerHTML = '';
+
+                urutanKategori.forEach(kategori => {
+                    if (!soalData[kategori]) return;
+
+                    const box = document.createElement('div');
+                    box.className = 'kategori-box';
+                    box.innerHTML = `
+                        <h2>${kategori}</h2>
+                        <button class="btn-kerjakan">Kerjakan Kuis!</button>
+                        <div class="kuis-area"></div>
+                    `;
+                    kategoriWrap.appendChild(box);
+
+                    const btnKerjakan = box.querySelector('.btn-kerjakan');
+                    const kuisArea = box.querySelector('.kuis-area');
+
+                    btnKerjakan.onclick = () => {
+                        btnKerjakan.style.display = 'none';
+                        kuisArea.classList.add('active');
+                        jalankanKuis(kuisArea, soalData[kategori]);
+                    };
+                });
+            } catch (err) {
+                kategoriWrap.textContent = "Gagal mengambil data dari database.";
+                console.error(err);
+            }
+        }
+
+        function jalankanKuis(container, soalArray) {
+            let current = 0;
+            let skor = 0;
+            let jawabanUser = Array(soalArray.length).fill(null);
+
+            const TOTAL_WAKTU = 900; 
+            let waktuSisa = TOTAL_WAKTU;
+            let timerInterval = null;
+
+            let timerDiv = container.parentElement.querySelector('.kuis-timer');
+            if (!timerDiv) {
+                timerDiv = document.createElement('div');
+                timerDiv.className = 'kuis-timer';
+                container.parentElement.appendChild(timerDiv);
+            }
+            timerDiv.textContent = `Timer: ${formatTimer(waktuSisa)}`;
+            timerDiv.style.display = "";
+
+            function formatTimer(detik) {
+                const m = Math.floor(detik / 60);
+                const s = detik % 60;
+                return `${m}:${s.toString().padStart(2, '0')}`;
+            }
+
+            clearInterval(timerInterval);
+            timerInterval = setInterval(() => {
+                waktuSisa--;
+                timerDiv.textContent = `Timer: ${formatTimer(waktuSisa)}`;
+                if (waktuSisa <= 0) {
+                    clearInterval(timerInterval);
+                    tampilSkorAkhir(true);
+                }
+            }, 1000);
+
+            function tampilSoal() {
+                if (current >= soalArray.length) {
+                    tampilSkorAkhir();
+                    return;
+                }
+
+                const soal = soalArray[current];
+                let opsi = '';
+
+                for (const key of ['A', 'B', 'C', 'D']) {
+                    opsi += `<button class="pilihan-btn${jawabanUser[current] === key ? ' selected' : ''}" data-key="${key}">${soal.pilihan[key]}</button>`;
+                }
+
+                container.innerHTML = `
+            <div class="row-kuis">
+                <div class="soal-box">${soal.pertanyaan}</div>
+                <div class="pilihan-list">${opsi}</div>
+            </div>
+            <div class="nav-btns">
+                <button id="btn-kembali" ${current === 0 ? 'disabled' : ''}>KEMBALI</button>
+                <button id="btn-next" ${current === soalArray.length - 1 ? 'disabled' : ''}>NEXT</button>
+                <button id="btn-submit" ${current === soalArray.length - 1 ? '' : 'disabled'}>SUBMIT</button>
+            </div>
+        `;
+
+                Array.from(container.querySelectorAll('.pilihan-btn')).forEach(btn => {
+                    btn.onclick = function () {
+                        jawabanUser[current] = btn.dataset.key;
+                        Array.from(container.querySelectorAll('.pilihan-btn')).forEach(b => b.classList.remove('selected'));
+                        btn.classList.add('selected');
+                    }
+                });
+
+                container.querySelector('#btn-kembali').onclick = () => {
+                    if (current > 0) { current--; tampilSoal(); }
+                };
+
+                container.querySelector('#btn-next').onclick = () => {
+                    if (current < soalArray.length - 1) { current++; tampilSoal(); }
+                };
+
+                container.querySelector('#btn-submit').onclick = () => {
+                    clearInterval(timerInterval);
+                    skor = 0;
+                    for (let i = 0; i < soalArray.length; i++) {
+                        if (jawabanUser[i] && jawabanUser[i] === soalArray[i].jawaban) skor++;
+                    }
+                    tampilSkorAkhir();
+                };
+            }
+
+            function tampilSkorAkhir(habisWaktu = false) {
+                clearInterval(timerInterval);
+                timerDiv.style.display = "none";
+                const nilaiAkhir = Math.round((skor / soalArray.length) * 100);
+                container.innerHTML = `
+            <div class="score-final">
+                <div>SELAMAT ANDA TELAH MENYELESAIKAN QUIZ YANG ADA</div>
+                <div style="margin:10px 0 10px 0;">INI HASIL SCORE KAMU</div>
+                <div class="score">${nilaiAkhir} DARI 100</div>
+                <div class="motivasi">${habisWaktu ? "Waktu habis! " : ""}TETAP BERUSAHA DAN TIDAK MENYERAH YAAA</div>
+                <button class="btn-beranda" id="btn-beranda">KEMBALI KE BERANDA</button>
+            </div>
+        `;
+                document.getElementById('btn-beranda').onclick = () => {
+                    showPage('beranda');
+                };
+            }
+
+            tampilSoal();
+        }
+        
+        loadData();
+    </script>
 </body>
+
 </html>
