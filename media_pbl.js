@@ -87,7 +87,7 @@ function showPage(page) {
         document.getElementById('materi-page').classList.remove('d-none');
     } else if (page === 'kuis') {
         document.title = "Media Interaktif Sistem Pernapasan pada Manusia - Kuis";
-        window.location.href = "Kuis.html";
+        window.location.href = "kuis_pbl.html";
         document.getElementById('kuis-page').classList.remove('d-none');
     } else if (page === 'video') {
         document.title = "Media Interaktif Sistem Pernapasan pada Manusia - Video";
@@ -96,4 +96,66 @@ function showPage(page) {
         document.title = "Media Interaktif Sistem Pernapasan pada Manusia - Tentang";
         document.getElementById('tentang-page').classList.remove('d-none');
     }
+}
+
+function logout() {
+    Swal.fire({
+        title: 'Log out',
+        text: "Anda Yakin Ingin Keluar?",
+        icon: 'question',
+        showCancelButton: true,
+        cancelButtonText: 'Tidak',
+        confirmButtonColor: '#ff5252',
+        cancelButtonColor: '#ffe066',
+        confirmButtonText: 'Iya, keluar!',
+        customClass: {
+            popup: 'pixel-swal',
+            title: 'pixel-swal-title',
+            content: 'pixel-swal-content',
+            confirmButton: 'pixel-swal-confirm',
+            cancelButton: 'pixel-swal-cancel'
+        },
+        buttonsStyling: false,
+        backdrop: `  rgba(0,0,0,0.5)`
+    }).then((result) => {
+        if (result.isConfirmed) {
+            Swal.fire({
+                title: 'Berhasil Keluar!',
+                icon: 'success',
+                showConfirmButton: false,
+                timer: 1500,
+                customClass: {
+                    popup: 'pixel-swal',
+                    title: 'pixel-swal-title',
+                    icon: 'pixel-swal-icon'
+                }
+            }).then(() => {
+                window.location.href = 'login_pbl.html';
+            });
+        }
+    });
+}
+
+function keluar() {
+    Swal.fire({
+        title: 'Keluar Dari Kuis ?',
+        icon: 'question',
+        showCancelButton: true,
+        cancelButtonText: 'Tidak',
+        cancelButtonColor: '#d33',
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Keluar!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            Swal.fire({
+                title: 'Berhasil Keluar Dari Kuis!',
+                icon: 'success',
+                showConfirmButton: false,
+                timer: 1500
+            }).then(() => {
+                window.location.href = "media_pbl.html";
+            });
+        }
+    });
 }
