@@ -159,3 +159,37 @@ function keluar() {
         }
     });
 }
+
+const audioPlayer = document.getElementById('audioPlayer');
+const volumeBtn = document.getElementById('volumeBtn');
+const volumeIcon = document.getElementById('volume-icon');
+const musicBtn = document.getElementById('musicBtn');
+const musicIcon = document.getElementById('music-icon');
+
+volumeBtn.addEventListener('click', () => {
+  audioPlayer.muted = !audioPlayer.muted;
+  if(audioPlayer.muted) {
+    volumeIcon.classList.remove('fa-volume-up');
+    volumeIcon.classList.add('fa-volume-mute');
+  } else {
+    volumeIcon.classList.remove('fa-volume-mute');
+    volumeIcon.classList.add('fa-volume-up');
+  }
+});
+
+musicBtn.addEventListener('click', () => {
+  if(audioPlayer.paused) {
+    audioPlayer.play();
+    musicIcon.classList.remove('fa-music');
+    musicIcon.classList.add('fa-pause');
+  } else {
+    audioPlayer.pause();
+    musicIcon.classList.remove('fa-pause');
+    musicIcon.classList.add('fa-music');
+  }
+});
+
+
+
+
+
