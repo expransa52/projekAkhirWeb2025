@@ -133,8 +133,307 @@ body {
     padding-bottom: 80px;
     padding-top: 40px;
 }
+/*bagian prans*/
+.fitur-page-materi {
+    min-height: calc(100vh - 60px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-bottom: 40px;
+    padding-top: 40px;
+}
+
+.fitur-page {
+    min-height: calc(100vh - 60px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-bottom: 40px;
+    padding-top: 40px;
+}
+
+.fitur-title {
+    font-size: 1.2rem;
+    font-family: 'Press Start 2P', cursive;
+    color: #ffe066;
+    margin-bottom: 18px;
+    text-shadow: 1px 1px #222831;
+}
+
+.fitur-content {
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0 2px 16px rgba(0, 0, 0, 0.07);
+    padding: 32px 24px;
+    min-width: 320px;
+    text-align: center;
+    color: #444;
+    font-size: 20px;
+    font-family: 'Times New Roman', cursive;
+    margin-bottom: 30px;
+}
+
+iframe {
+    margin-bottom: 100px;
+    margin-right: 50px;
+    margin-left: 50px;
+}
+.pixel-marquee {
+    font-family: 'Press Start 2P', cursive !important;
+    font-size: 12px;
+    color: #030303;
+    text-shadow: 1px 1px #222831;
+    letter-spacing: 1px;
+    padding: 10px 0;
+    background-color: rgba(255, 231, 122, 0.959);
+    border-radius: 8px;
+    border: 2px solid #ffe066;
+    box-shadow: 0 2px 0 #222831;
+    margin: 0 10px;
+}
+
+.materi-wrapper {
+    display: flex;
+    gap: 20px;
+    background: #fff;
+    padding: 16px;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    border: 3px solid #ffe066;
+}
+
+.materi-image {
+    width: 300px;
+    height: 200px;
+    flex-shrink: 0;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.materi-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.materi-content {
+    flex: 1;
+}
+
+.materi-title {
+    margin-top: 70px;
+    font-size: 1rem;
+    color: #222831;
+    margin-bottom: 8px;
+    font-family: 'Press Start 2P', cursive;
+    color: #f4c430;
+    text-shadow: 1px 1px 1px black;
+}
+
+.materi-preview {
+    font-size: 0.9rem;
+    color: #444;
+    margin-bottom: 10px;
+}
+
+.btn-detail {
+    padding: 8px 14px;
+    font-size: 0.8rem;
+    font-family: 'Press Start 2P', cursive;
+    border: none;
+    background: #ffe066;
+    color: #222831;
+    border-radius: 6px;
+    cursor: pointer;
+    box-shadow: 0 2px 0 #222831;
+    transition: all 0.15s;
+}
+
+.btn-detail:hover {
+    background: #ffeb3b;
+}
+
+.btn-back-materi {
+    background-color: #ffe066;
+}
+
+.btn-back-materi:hover {
+    background-color: #ffeb3b;
+}
+
+.giant-text {
+    font-size: 12mm;
+}
+
+.card {
+    margin-bottom: 2rem;
+}
+
+.profile-row {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 2rem;
+}
+
+.profile-img {
+    max-width: 180px;
+    margin-right: 20px;
+}
+
+.profile-text p {
+    margin: 4px 0;
+    text-align: left;
+    color: #000000;
+}
+.pixel-btn i {
+    margin-right: 10px;
+    font-size: 1.3rem;
+}
+
+.pixel-bg-clouds {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.25;
+}
 
 
+.materi-detail-page p {
+    color: #000000;
+    font-size: 0.9rem;
+    line-height: 1.8;
+}
+
+.materi-detail-page h4 {
+    color: #222831;
+    font-size: 1.1rem;
+}
+
+.materi-detail-page h2 {
+    color: black;
+    font-size: 1.5rem;
+}
+
+.subjudul-dengan-gambar {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    justify-content: flex-start;
+}
+
+.gambar-subjudul {
+   display: block;
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    width: 300px;
+    height: 200px;
+    object-fit: cover;
+    border: 2px solid #222831;
+}
+
+.teks {
+    font-family: 'Times New Roman';
+    color: #000000;
+    text-align: center;
+}
+
+.teks-sub {
+    font-family: 'Times New Roman';
+    color: #000000;
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
+.materi-sidebar-detail {
+    border-top: 1px solid #393e46;
+    padding-top: 15px;
+    margin-top: 15px;
+}
+
+.materi-sidebar-detail .sidebar-header {
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+    color: #ffd700;
+    text-shadow: 1px 1px #222831;
+}
+
+.materi-sidebar-detail ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.materi-sidebar-detail ul li {
+    padding: 8px 32px;
+    color: #fff;
+    font-size: 0.8rem;
+    font-family: 'Press Start 2P', cursive;
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.materi-sidebar-detail ul li:hover {
+    background: #393e46;
+    color: #ffe066;
+}
+
+.materi-sidebar-detail ul li.active-sub {
+    background: #393e46;
+    color: #ffe066;
+    border-left: 4px solid #ffe066;
+    padding-left: 28px;
+}
+
+.materi-sidebar-detail p {
+    color: #ccc;
+    font-size: 0.75rem;
+    text-align: center;
+    padding: 10px;
+}
+
+.sub-materi-item {
+    white-space: normal !important;
+    overflow: visible !important;
+    text-overflow: clip !important;
+    height: auto !important;
+    padding: 8px 15px !important;
+    word-wrap: break-word !important;
+}
+ .judul-sub-detail {
+    display: block;
+    width: 100%;
+    text-align: center;
+    margin-top: 24px;      
+    margin-bottom: 8px;   
+    font-size: 1rem;
+    color: #f4c430;
+    font-family: 'Press Start 2P', cursive;
+    text-shadow: 1px 1px 1px black;
+}
+
+
+#materi-detail-list ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
 .swal2-popup {
     font-family: 'Press Start 2P', cursive !important;
     border: 4px solid #222831 !important;
