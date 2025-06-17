@@ -133,7 +133,7 @@ body {
     padding-bottom: 80px;
     padding-top: 40px;
 }
-/*bagian aisyah*/
+
 .pixel-title {
     font-size: 1.7rem;
     font-family: 'Press Start 2P', cursive;
@@ -372,7 +372,7 @@ iframe {
     color: #000000;
 }
 
-/*bagian Aisyah*/
+
 .music-controls {
     display: flex;
     gap: 10px;
